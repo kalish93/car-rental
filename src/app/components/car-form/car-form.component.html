@@ -1,0 +1,62 @@
+<h1>Car Registration Form</h1>
+<form [formGroup]="carForm" (ngSubmit)="registerCar()">
+  <div class="car-form">
+    <div class="car-form-first">
+      <mat-form-field appearance="outline">
+        <mat-label>Make</mat-label>
+        <input matInput placeholder="Make" formControlName="make" />
+        <mat-error *ngIf="carForm.get('make')?.hasError('required')">Make is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Model</mat-label>
+        <input matInput placeholder="Model" formControlName="model" />
+        <mat-error *ngIf="carForm.get('model')?.hasError('required')">Model is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Year</mat-label>
+        <input matInput type="number" placeholder="Year" formControlName="year" />
+        <mat-error *ngIf="carForm.get('year')?.hasError('required')">Year is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" placeholder="Price" formControlName="price" />
+        <mat-error *ngIf="carForm.get('price')?.hasError('required')">Price is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Plate Number</mat-label>
+        <input matInput placeholder="Plate Number" formControlName="plate_number" />
+        <mat-error *ngIf="carForm.get('plate_number')?.hasError('required')">Plate Number is required</mat-error>
+      </mat-form-field>
+
+    </div>
+    <div class="car-form-second">
+      <mat-checkbox matInput formControlName="available">Available</mat-checkbox>
+
+      <div class="file">
+        <mat-label>Main Picture: </mat-label>
+      <input type="file" (change)="onMainPictureSelected($event)" />
+      </div>
+
+     <div class="file">
+      <mat-label>Rear Picture 1: </mat-label>
+      <input type="file" (change)="onRearPicture1Selected($event)" />
+     </div>
+
+      <div class="file">
+        <mat-label>Rear Picture 2: </mat-label>
+      <input type="file" (change)="onRearPicture2Selected($event)" />
+      </div>
+
+      <div class="file">
+        <mat-label>Rear Picture 3: </mat-label>
+      <input type="file" (change)="onRearPicture3Selected($event)" />
+      </div>
+
+    </div>
+  </div>
+  <button mat-flat-button color="primary" type="submit" [disabled]="carForm.invalid">Register Car</button>
+</form>

@@ -1,0 +1,68 @@
+// .car-form{
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+//   align-items: flex-start;
+// }
+// .car-form-first, .car-form-second{
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   align-items: center;
+// }
+/* car-form.component.scss */
+h1 {
+  text-align: center;
+  color: #5F77D0;
+  margin-bottom: 20px;
+}
+
+.car-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.car-form-first, .car-form-second {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  // padding: 20px;
+  // border: 1px solid #ccc;
+  // border-radius: 8px;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  // background-color: #f9f9f9;
+  // margin: 10px;
+}
+
+mat-form-field {
+  width: 200%;
+  // margin-bottom: 20px;
+}
+
+button {
+  width: 20%;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #7C8CC7;
+}
+
+.file{
+  margin-bottom: 20px;
+}

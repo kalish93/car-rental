@@ -1,0 +1,95 @@
+<!-- <form class="login-form" [formGroup]="registerForm">
+  <div class="container">
+      <div class="left-half">
+        <img class="vote-image" src="assets/images/register.png" alt="register">
+      </div>
+      <div class="right-half">
+        <h1 class="signin-title">Sign Up</h1>
+        <div class="input-group">
+          <p class="signup">Already hava an account? <a (click)="navigateToLogin()">Sign In</a></p>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input id="email" formControlName="email" matInput />
+            <mat-error *ngIf="emailValidationError.errors?.['required']">
+              Please provide a valid email
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              id="password"
+              formControlName="password"
+              type="password"
+              matInput
+            />
+             <mat-error *ngIf="passwordValidationError.errors?.['required']">
+              Please provide a valid password
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button color="primary" class="login-btn" mat-flat-button (click)="register()">Sign Up</button>
+      </div>
+    </div>
+  </form> -->
+  <form class="register-form" [formGroup]="registerForm">
+    <div class="container">
+      <div class="left-half">
+        <img class="register-image" src="assets/images/register.png" alt="register">
+      </div>
+      <div class="right-half">
+        <h1 class="signup-title">Sign Up</h1>
+        <div class="input-group">
+          <p class="signup">Already have an account? <a (click)="navigateToLogin()">Sign In</a></p>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input id="email" formControlName="email" matInput />
+            <mat-error *ngIf="emailValidationError?.errors?.['required']">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="emailValidationError?.errors?.['email']">
+              Please provide a valid email
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input id="password" type="password" formControlName="password" matInput />
+            <mat-error *ngIf="passwordValidationError?.errors?.['required']">
+              Password is required
+            </mat-error>
+            <mat-error *ngIf="passwordValidationError?.errors?.['minlength']">
+              Password must be at least 6 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input id="password_confirmation" type="password" formControlName="passwordConfirmation" matInput />
+            <mat-error *ngIf="passwordConfirmationValidationError?.errors?.['required']">
+              Confirm Password is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input id="firstName" formControlName="firstName" matInput />
+            <mat-error *ngIf="firstNameValidationError?.errors?.['required']">
+              First Name is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input id="lastName" formControlName="lastName" matInput />
+            <mat-error *ngIf="lastNameValidationError?.errors?.['required']">
+              Last Name is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input id="phoneNumber" formControlName="phoneNumber" matInput />
+            <mat-error *ngIf="phoneNumberValidationError?.errors?.['required']">
+              Phone Number is required
+            </mat-error>
+          </mat-form-field>
+          <button color="primary" class="login-btn" mat-flat-button (click)="register()">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </form>
