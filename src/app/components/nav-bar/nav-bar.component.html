@@ -1,0 +1,19 @@
+<mat-toolbar class="toolbar" color="primary">
+  <span>Car Rental</span>
+  <div>
+    <button mat-button routerLink="/">Home</button>
+  <button mat-button *ngIf="isLoggedIn && decoded.is_admin" routerLink="/rent-history">Rent History</button>
+  <button mat-button *ngIf="isLoggedIn && decoded.is_admin" routerLink="/car-list">All Cars</button>
+  <button mat-button *ngIf="isLoggedIn" routerLink="/cars">Available Cars</button>
+  <button mat-button *ngIf="isLoggedIn && decoded.is_admin" routerLink="/users">Users</button>
+  <!-- <button mat-button routerLink="/contact">Contact</button> -->
+  <span class="spacer"></span>
+  <button mat-icon-button *ngIf="isLoggedIn" (click)="navigateToProfile()">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="isLoggedIn" (click)="logOut()"
+  ><mat-icon>exit_to_app</mat-icon></button>
+    <button mat-button *ngIf="!isLoggedIn" routerLink="/login">Login</button>
+    <button mat-button *ngIf="!isLoggedIn" routerLink="/register">Sign up</button>
+  </div>
+</mat-toolbar>

@@ -1,4 +1,5 @@
 <div class="container">
+  <button mat-raised-button  (click)="openBookingModal()">Book Now</button>
   <div *ngIf="car" class="car-details">
     <div class="main-detail">
       <img class="main-img" [src]="'http://localhost:8000/storage/' + car.main_picture" alt="Car Image">

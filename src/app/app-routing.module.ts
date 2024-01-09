@@ -7,10 +7,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { CarListComponent } from "./components/car-list/car-list.component";
 import { CarFormComponent } from "./components/car-form/car-form.component";
 import { CarDetailComponent } from "./components/car-detail/car-detail.component";
+import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+import { RentHistoryComponent } from "./components/rent-history/rent-history.component";
+import { AllCarsListComponent } from "./components/all-cars-list/all-cars-list.component";
+import { UsersListComponent } from "./components/users-list/users-list.component";
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent
   },
   {
@@ -32,6 +36,22 @@ export const routes: Routes = [
   {
     path: 'cars/:id',
     component: CarDetailComponent
+  },
+  {
+    path: 'profile',
+    component: UserProfileComponent
+  },
+  {
+    path: 'rent-history',
+    component: RentHistoryComponent
+  },
+  {
+    path: 'car-list',
+    component: AllCarsListComponent
+  },
+  {
+    path: 'users',
+    component: UsersListComponent
   },
 ];
 

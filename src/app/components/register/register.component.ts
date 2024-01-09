@@ -3,6 +3,7 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit{
   private fb : NonNullableFormBuilder,
   private router : Router,
   private authService: AuthService,
-  private snackBar: MatSnackBar
+  private toastr: ToastrService
  ) {
   this.registerForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -68,22 +69,16 @@ export class RegisterComponent implements OnInit{
     };
     this.authService.register(registrationData).subscribe(
       (response) => {
-        this.openSnackBar('User registered successfully', 'success');
+        this.toastr.success('Registered successfully','Success')
         this.router.navigate(['/login']);
       },
       (error) => {
-        this.openSnackBar(error, 'error');
+        this.toastr.error('Registeration failed','Error')
       }
     );
   }
 
   navigateToLogin(){
     this.router.navigate(['/login']);
-  }
-  openSnackBar(message: string, panelClass: string) {
-    this.snackBar.open(message, 'Close', {
-      duration: 3000,
-      panelClass: [panelClass],
-    });
   }
 }

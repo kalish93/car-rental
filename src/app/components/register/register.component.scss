@@ -1,7 +1,7 @@
 .container {
   display: flex;
-  height: 100vh;
   font-family: 'Inter', sans-serif;
+  margin-bottom: 20px;
 }
 
 .left-half {
@@ -13,8 +13,8 @@
   align-items: center;
 
   img {
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 60%;
   }
 }
 
@@ -50,7 +50,7 @@
   }
 
   .login-btn {
-    width: 80%;
+    width: 100%;
     padding: 25px;
     border-radius: 5px;
     // background-color: #7C8CC7;
@@ -72,4 +72,8 @@ color: #7C8CC7;
 a{
 text-decoration: underline;
 cursor: pointer;
+}
+
+.wrapper{
+  margin-top: 20px;
 }

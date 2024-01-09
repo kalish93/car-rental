@@ -4,6 +4,7 @@ import { Observable} from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
     private fb: NonNullableFormBuilder,
     private router: Router,
     private authService: AuthService,
-    private snackBar: MatSnackBar
+    private toastr: ToastrService
   ) {
 
   }
@@ -41,22 +42,17 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.loginForm.value;
     this.authService.login(email as string, password as string).subscribe(
       (response) => {
-        this.openSnackBar('User logged in successfully', 'success');
+        this.toastr.success('Logged in sucessfully','Success')
         localStorage.setItem('accessToken', response.accessToken);
         this.router.navigate(['/cars']);
+        this.authService.setLoggedInStatus(true)
       },
       (error) => {
-        this.openSnackBar(error.message, 'error');
+        this.toastr.error('Invalid email or password','Error')
       }
     );
   }
   navigateToRegistration(){
     this.router.navigate(['/register'])
-  }
-  openSnackBar(message: string, panelClass: string) {
-    this.snackBar.open(message, 'Close', {
-      duration: 3000,
-      panelClass: [panelClass],
-    });
   }
 }

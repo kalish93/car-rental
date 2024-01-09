@@ -13,7 +13,7 @@ export class CarListComponent implements OnInit {
   constructor(private router: Router, private carService: CarService) {}
 
   ngOnInit(): void {
-    this.carService.getCars().subscribe(
+    this.carService.getAvailableCars().subscribe(
       (response) => {
         this.cars = response.cars;
       },
@@ -21,9 +21,6 @@ export class CarListComponent implements OnInit {
     );
   }
 
-  navigateToForm() {
-    this.router.navigate(['/cars/register']);
-  }
   navigateToDetail(id: any) {
     this.router.navigate([`/cars/${id}`]);
   }

@@ -13,12 +13,23 @@
   margin: 20px;
 }
 
-.search-bar {
+.search-bar,.title {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  width: 100%; /* Set the width to 100% or adjust as needed */
 }
+
+
 
 .add-car-button {
   margin-left: auto;
+}
+
+.not-available{
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
 }

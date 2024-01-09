@@ -3,16 +3,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarService } from '../../services/car.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-car-form',
   templateUrl: './car-form.component.html',
-  styleUrls: ['./car-form.component.scss']
+  styleUrls: ['./car-form.component.scss'],
 })
 export class CarFormComponent implements OnInit {
   carForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private carService: CarService, private snackBar: MatSnackBar, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private carService: CarService,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
     this.carForm = this.formBuilder.group({
       make: ['', Validators.required],
       model: ['', Validators.required],
@@ -23,7 +30,7 @@ export class CarFormComponent implements OnInit {
       main_picture: [null],
       rear_picture_1: [null],
       rear_picture_2: [null],
-      rear_picture_3: [null]
+      rear_picture_3: [null],
     });
   }
 
@@ -39,19 +46,31 @@ export class CarFormComponent implements OnInit {
       formData.append('year', this.carForm.get('year')?.value);
       formData.append('price', this.carForm.get('price')?.value);
       formData.append('plate_number', this.carForm.get('plate_number')?.value);
-      formData.append('available', this.carForm.get('available')?.value ? '1' : '0');
+      formData.append(
+        'available',
+        this.carForm.get('available')?.value ? '1' : '0'
+      );
       formData.append('main_picture', this.carForm.get('main_picture')?.value);
-      formData.append('rear_picture_1', this.carForm.get('rear_picture_1')?.value);
-      formData.append('rear_picture_2', this.carForm.get('rear_picture_2')?.value);
-      formData.append('rear_picture_3', this.carForm.get('rear_picture_3')?.value);
+      formData.append(
+        'rear_picture_1',
+        this.carForm.get('rear_picture_1')?.value
+      );
+      formData.append(
+        'rear_picture_2',
+        this.carForm.get('rear_picture_2')?.value
+      );
+      formData.append(
+        'rear_picture_3',
+        this.carForm.get('rear_picture_3')?.value
+      );
 
       this.carService.carRegister(formData).subscribe(
         (response) => {
-          this.openSnackBar('Car registered successfully', 'success');
-          this.router.navigate(['/cars'])
+          this.toastr.success('Car registered successfully','Success')
+          this.router.navigate(['/cars']);
         },
         (error) => {
-          this.openSnackBar(error.message, 'error');
+          this.toastr.error('Car registering failed','Error')
         }
       );
     }

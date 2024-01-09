@@ -1,21 +1,23 @@
 <div class="container">
   <div class="search-bar">
     <mat-form-field appearance="outline">
+      <mat-icon matPrefix>search</mat-icon>
       <input matInput placeholder="Search">
     </mat-form-field>
   </div>
-  <button color="primary" mat-flat-button (click)="navigateToForm()" class="add-car-button">Add Car</button>
-
+  <h1 class="title">Available Cars</h1>
 <div class="car-list-container">
   <mat-card class="car-card" *ngFor="let car of cars" (click)="navigateToDetail(car.id)">
     <img mat-card-image [src]="'http://localhost:8000/storage/' +car.main_picture" alt="Car Image">
     <mat-card-content>
-      <p>Availability: {{ car.availability }}</p>
-      <p>Price: {{ car.price }}</p>
+      <p>Model: {{ car.model }}</p>
+      <p>Make: {{ car.make }}</p>
+      <p>Price: {{ car.price }} /day</p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button color="primary">Book Now</button>
     </mat-card-actions>
   </mat-card>
 </div>
+<div class="not-available" *ngIf="cars.length === 0">No cars are available</div>
 </div>
