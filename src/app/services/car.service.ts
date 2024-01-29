@@ -34,6 +34,18 @@ export class CarService {
    return this.http.post<any>(`${BASE_API}/rental-transactions`, data, { headers: this.headers });
  }
 
+ updateCar(data:any, id: any): Observable<any> {
+   return this.http.put<any>(`${BASE_API}/cars/${id}`, data, { headers: this.headers });
+ }
+
+ deleteCar(id:any): Observable<any> {
+   return this.http.delete<any>(`${BASE_API}/cars/${id}`, { headers: this.headers });
+ }
+
+ changeCarStatus(id: any, data: any): Observable<any> {
+  return this.http.put<any>(`${BASE_API}/cars/${id}/change-status`, data, { headers: this.headers });
+}
+
  getRentHistory(pageSize: number, pageNumber: number): Observable<any> {
   const params = new HttpParams()
     .set('pageSize', pageSize.toString())

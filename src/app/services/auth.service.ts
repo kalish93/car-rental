@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BASE_API, LOGIN_URL, REGISTERATION_URL } from '../core/api-endpoints';
+import { AnonymousSubject } from 'rxjs/internal/Subject';
 
 @Injectable({
   providedIn: 'root'
@@ -39,11 +40,11 @@ export class AuthService {
     return this.http.post<any>(REGISTERATION_URL, registrationData);
   }
 
-  getProfile(): Observable<any> {
-    return this.http.get<any>(`${BASE_API}/profile`,{ headers: this.headers });
+  getProfile(id:any): Observable<any> {
+    return this.http.get<any>(`${BASE_API}/profile/${id}`,{ headers: this.headers });
   }
 
-  getPaginatedRentHistory(pageSize: number, pageNumber: number): Observable<any> {
+  getPaginatedRentHistory(pageSize: number, pageNumber: number, userId: any): Observable<any> {
     const params = new HttpParams()
       .set('pageSize', pageSize.toString())
       .set('pageNumber', pageNumber.toString());
@@ -56,7 +57,7 @@ export class AuthService {
         params: params
       };
 
-    return this.http.get(`${BASE_API}/my-rent-history`,options);
+    return this.http.get(`${BASE_API}/rent-history/${userId}`,options);
   }
 
   getAllUsers(pageSize: number, pageNumber: number): Observable<any> {

@@ -71,4 +71,8 @@ export const materialModules = [
   MatSlideToggleModule,
   MatExpansionModule,
   MatSliderModule,
+  MatTableModule,
+  MatButtonModule,
+  MatIconModule,
+  MatMenuModule,
 ];

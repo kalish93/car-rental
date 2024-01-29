@@ -40,10 +40,12 @@ export class NavBarComponent implements OnInit {
   }
 
   navigateToProfile() {
+    // this.authService.getPaginatedRentHistory(1,5)
     this.router.navigate(['/profile']);
   }
 
   logOut() {
+    localStorage.removeItem('accessToken');
     this.authService.logout();
     this.router.navigate(['/login']);
   }

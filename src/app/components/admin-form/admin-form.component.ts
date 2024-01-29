@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -8,15 +8,16 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-admin-form',
   templateUrl: './admin-form.component.html',
-  styleUrl: './admin-form.component.scss',
+  styleUrls: ['./admin-form.component.scss'],
 })
 export class AdminFormComponent {
   registerForm: FormGroup;
+  isSubmitting: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<AdminFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private fb: NonNullableFormBuilder,
+    private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private toastr: ToastrService
@@ -30,7 +31,6 @@ export class AdminFormComponent {
       phoneNumber: ['', [Validators.required]],
     });
   }
-  ngOnInit(): void {}
 
   get emailValidationError() {
     return this.registerForm.get('email');
@@ -39,6 +39,7 @@ export class AdminFormComponent {
   get passwordValidationError() {
     return this.registerForm.get('password');
   }
+
   get passwordConfirmationValidationError() {
     return this.registerForm.get('passwordConfirmation');
   }
@@ -56,6 +57,8 @@ export class AdminFormComponent {
   }
 
   register() {
+    this.isSubmitting = true;
+
     const registrationData = {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
@@ -64,16 +67,19 @@ export class AdminFormComponent {
       last_name: this.registerForm.value.lastName,
       phone_number: this.registerForm.value.phoneNumber,
     };
+
     this.authService.registerAdmin(registrationData).subscribe(
       (response) => {
         this.dialogRef.close();
-        this.toastr.success('Admin registered sucessfully', 'Success');
+        this.toastr.success('Admin registered successfully', 'Success');
         location.reload();
       },
       (error) => {
-        this.toastr.error('Admin registeration failed', 'Error');
+        this.toastr.error('Admin registration failed', 'Error');
       }
-    );
+    ).add(() => {
+      this.isSubmitting = false;
+    });
   }
 
   onCancelClick(): void {

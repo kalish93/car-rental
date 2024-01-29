@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-book-form',
   templateUrl: './book-form.component.html',
-  styleUrl: './book-form.component.scss',
+  styleUrls: ['./book-form.component.scss'],
 })
 export class BookFormComponent implements OnInit {
   bookingForm: FormGroup;
@@ -65,6 +65,7 @@ export class BookFormComponent implements OnInit {
   }
 
   onCancelClick(): void {
+    this.toastr.info('Booking process canceled', 'Info');
     this.dialogRef.close();
   }
 
@@ -85,15 +86,19 @@ export class BookFormComponent implements OnInit {
       this.carService.rent(bookingData).subscribe(
         (response) => {
           this.dialogRef.close();
-          this.router.navigate(['/cars'])
+          this.router.navigate(['/cars']);
           this.toastr.success('Car booked successfully', 'Success');
         },
         (error) => {
-          this.toastr.error('Car booking failed', 'Error');
+          if (error.status === 422) {
+            this.toastr.error('Validation failed. Please check the booking dates.', 'Error');
+          } else {
+            this.toastr.error('Car booking failed. Please try again later.', 'Error');
+          }
         }
       );
     } else {
+      this.toastr.warning('Please fill in all required fields', 'Warning');
     }
-    this.dialogRef.close();
   }
 }

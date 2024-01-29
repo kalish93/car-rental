@@ -23,6 +23,7 @@ export class RentHistoryComponent {
     this.carService.getRentHistory(pageSize, pageNumber).subscribe((data: any) => {
       this.dataSource.data = data.data;
       this.paginator!.length = data.total;
+      console.log(data,'fffffffffffffff')
     });
   }
 

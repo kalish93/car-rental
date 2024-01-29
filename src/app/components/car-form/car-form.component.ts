@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CarFormComponent implements OnInit {
   carForm: FormGroup;
+  isSubmitting: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +40,9 @@ export class CarFormComponent implements OnInit {
   }
 
   registerCar(): void {
-    if (this.carForm.valid) {
+    if (this.carForm.valid && !this.isSubmitting) {
+      this.isSubmitting = true;
+
       const formData = new FormData();
       formData.append('make', this.carForm.get('make')?.value);
       formData.append('model', this.carForm.get('model')?.value);
@@ -66,13 +69,15 @@ export class CarFormComponent implements OnInit {
 
       this.carService.carRegister(formData).subscribe(
         (response) => {
-          this.toastr.success('Car registered successfully','Success')
+          this.toastr.success('Car registered successfully', 'Success');
           this.router.navigate(['/cars']);
         },
         (error) => {
-          this.toastr.error('Car registering failed','Error')
+          this.toastr.error('Car registration failed. Please try again later.', 'Error');
         }
-      );
+      ).add(() => {
+        this.isSubmitting = false;
+      });
     }
   }
 

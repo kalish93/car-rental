@@ -1,24 +1,34 @@
-.profile-container {
+/* election-list.component.css */
+.election-cards {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
-  margin-top: 50px;
+  justify-content: center;
+  gap: 40px;
 }
 
-.profile-card {
-  max-width: 400px;
-  width: 100%;
+.election-card {
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 20px; /* Adjust padding as needed */
+  box-sizing: border-box; /* Include padding in the width calculation */
 }
 
-.profile-avatar {
+.candidate-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  border: 2px solid #ccc; /* Border around the candidate container */
+  padding: 12px; /* Padding inside the border */
+}
+
+.candidate-image {
   width: 64px;
   height: 64px;
   border-radius: 50%;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: #e0e0e0;
+  margin-right: 12px;
   img {
     width: 100%;
     height: 100%;
@@ -26,6 +36,24 @@
   }
 }
 
-.rent-history{
-  margin: 30px;
+.candidate-details {
+  flex: 1;
+}
+
+.candidate-details h3 {
+  margin-bottom: 5px;
+}
+
+.candidate-details p {
+  max-height: 80px; /* Adjust as needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-header {
+  text-align: center;
+}
+
+.election-name {
+  text-align: center;
 }
